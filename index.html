@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#2B1A12" />
+  <title>Dani Cookies · Totem de Pedidos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="stage" id="stage" data-screen="home">
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ============ TOPO ============ -->
+    <header class="topbar">
+      <button class="brand" id="brandBtn" type="button" aria-label="Voltar ao início">
+        <span class="brand-mark" id="brandMark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <strong>Dani</strong>
+          <em>Cookies</em>
+        </span>
+      </button>
+
+      <div class="topbar-right">
+        <span class="open-dot" aria-hidden="true"></span>
+        <span class="open-label">Aberto agora</span>
+
+        <button class="cart-btn" id="cartBtn" type="button" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 7h12l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.6H9a1.8 1.8 0 0 1-1.8-1.6L6 7Z" />
+            <path d="M9.2 7V6a2.8 2.8 0 0 1 5.6 0v1" />
+          </svg>
+          <span class="cart-badge is-empty" id="cartBadge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="screens">
+
+      <!-- ============ ATRAÇÃO ============ -->
+      <section class="screen screen--home is-active" id="screen-home">
+        <div class="home-glow home-glow--a" aria-hidden="true"></div>
+        <div class="home-glow home-glow--b" aria-hidden="true"></div>
+
+        <div class="home-inner">
+          <div class="home-art" id="homeArt" aria-hidden="true"></div>
+
+          <p class="eyebrow eyebrow--gold">Cookies artesanais · feitos na hora</p>
+
+          <h1 class="home-title">Dani<br /><span>Cookies</span></h1>
+
+          <p class="home-sub">
+            Massa fresca, recheio generoso e aquele cheirinho<br />
+            de forno que abraça a rua inteira.
+          </p>
+
+          <button class="btn btn--gold btn--xl" id="startBtn" type="button">
+            Toque para começar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 12h15" /><path d="m13 6 6 6-6 6" />
+            </svg>
+          </button>
+
+          <p class="home-foot">Retirada no balcão em até 5 minutos</p>
+        </div>
+      </section>
+
+      <!-- ============ CARDÁPIO ============ -->
+      <section class="screen screen--menu" id="screen-menu">
+        <div class="screen-head">
+          <div>
+            <p class="eyebrow">Cardápio</p>
+            <h2 class="screen-title">Escolha seu cookie</h2>
+          </div>
+          <p class="screen-note">Tudo fresquinho<br />saído do forno</p>
+        </div>
+
+        <div class="pills" id="pills" role="tablist" aria-label="Categorias"></div>
+
+        <div class="scroll-area">
+          <div class="product-grid" id="productGrid"></div>
+        </div>
+
+        <div class="floating-cart" id="floatingCart" hidden>
+          <div class="floating-cart-info">
+            <span id="fCartCount">0 itens</span>
+            <strong id="fCartTotal">R$ 0,00</strong>
+          </div>
+          <button class="btn btn--gold" id="fCartBtn" type="button">Ver carrinho</button>
+        </div>
+      </section>
+
+      <!-- ============ CARRINHO ============ -->
+      <section class="screen screen--cart" id="screen-cart">
+        <div class="screen-head">
+          <div>
+            <p class="eyebrow">Seu pedido</p>
+            <h2 class="screen-title">Carrinho</h2>
+          </div>
+          <button class="ghost-btn" id="addMoreBtn" type="button">+ Adicionar mais</button>
+        </div>
+
+        <div class="scroll-area" id="cartScroll">
+          <div class="cart-list" id="cartList"></div>
+
+          <div class="empty-state" id="cartEmpty" hidden>
+            <div class="empty-art" aria-hidden="true"></div>
+            <h3>Seu carrinho está vazio</h3>
+            <p>Escolha um cookie fresquinho para começar.</p>
+            <button class="btn btn--primary" id="emptyGoMenu" type="button">Ver cardápio</button>
+          </div>
+        </div>
+
+        <div class="bottom-bar" id="cartBar">
+          <div class="totals">
+            <span>Subtotal</span>
+            <strong id="cartTotal">R$ 0,00</strong>
+          </div>
+          <button class="btn btn--primary bottom-bar-btn" id="goCheckout" type="button">Continuar</button>
+        </div>
+      </section>
+
+      <!-- ============ CHECKOUT ============ -->
+      <section class="screen screen--checkout" id="screen-checkout">
+        <div class="screen-head">
+          <div>
+            <p class="eyebrow">Finalizar</p>
+            <h2 class="screen-title">Pagamento</h2>
+          </div>
+          <button class="ghost-btn" id="backToCart" type="button">← Voltar</button>
+        </div>
+
+        <div class="scroll-area">
+          <label class="field">
+            <span class="field-label">Seu nome <em>(opcional)</em></span>
+            <input id="nameInput" type="text" maxlength="26" autocomplete="off" placeholder="Como podemos te chamar?" />
+          </label>
+
+          <p class="section-label">Como você quer pagar?</p>
+
+          <div class="pay-options" id="payOptions">
+            <button class="pay-option is-active" type="button" data-pay="pix" aria-pressed="true">
+              <span class="pay-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                  <path d="m12 3 4.6 4.6-2.3 2.3a2 2 0 0 1-2.8 0L9.2 7.6 12 3Z" />
+                  <path d="m3 12 4.6-4.6 2.3 2.3a2 2 0 0 1 0 2.8L7.6 14.8 3 12Z" />
+                  <path d="m21 12-4.6 4.6-2.3-2.3a2 2 0 0 1 0-2.8l2.3-2.3L21 12Z" />
+                  <path d="m12 21-4.6-4.6 2.3-2.3a2 2 0 0 1 2.8 0l2.3 2.3L12 21Z" />
+                </svg>
+              </span>
+              <span class="pay-text"><strong>Pix</strong><em>Aprovação na hora</em></span>
+              <span class="pay-check" aria-hidden="true"></span>
+            </button>
+
+            <button class="pay-option" type="button" data-pay="card" aria-pressed="false">
+              <span class="pay-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                  <rect x="2.5" y="5" width="19" height="14" rx="3" />
+                  <path d="M2.5 10h19" /><path d="M6.5 15h4" />
+                </svg>
+              </span>
+              <span class="pay-text"><strong>Cartão</strong><em>Crédito ou débito</em></span>
+              <span class="pay-check" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <p class="section-label">Resumo do pedido</p>
+          <div class="summary" id="checkoutSummary"></div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="totals">
+            <span>Total</span>
+            <strong id="checkoutTotal">R$ 0,00</strong>
+          </div>
+          <button class="btn btn--primary bottom-bar-btn" id="payBtn" type="button">Pagar</button>
+        </div>
+      </section>
+
+      <!-- ============ SUCESSO ============ -->
+      <section class="screen screen--success" id="screen-success">
+        <div class="success-inner">
+          <div class="success-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m4.5 12.5 5 5 10-11" />
+            </svg>
+          </div>
+
+          <p class="eyebrow">Tudo certo</p>
+          <h2 class="success-title">Pedido confirmado!</h2>
+          <p class="success-order">Pedido <strong id="orderNumber">#DC-0000</strong></p>
+
+          <div class="success-receipt" id="successReceipt"></div>
+
+          <p class="success-msg" id="successMsg">Retire no balcão em até 5 minutos.</p>
+
+          <div class="success-back">
+            <span class="success-progress" aria-hidden="true"><i id="successProgress"></i></span>
+            <span>Voltando ao início em <strong id="successCount">12</strong>s</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ============ OVERLAY / SHEET DE PRODUTO ============ -->
+    <div class="overlay" id="overlay" hidden></div>
+
+    <aside class="sheet" id="sheet" aria-hidden="true" aria-label="Detalhes do produto">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <button class="sheet-close" id="sheetClose" type="button" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+      <div class="sheet-body" id="sheetBody"></div>
+    </aside>
+
+    <!-- ============ AVISO DE INATIVIDADE ============ -->
+    <div class="idle" id="idle" hidden>
+      <div class="idle-card">
+        <div class="idle-art" id="idleArt" aria-hidden="true"></div>
+        <h3>Ainda está aí?</h3>
+        <p>Toque na tela para continuar seu pedido.<br />Voltamos ao início em <strong id="idleCount">10</strong>s.</p>
+        <button class="btn btn--gold" id="idleContinue" type="button">Continuar comprando</button>
+      </div>
+    </div>
+
+    <!-- ============ TOAST ============ -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
